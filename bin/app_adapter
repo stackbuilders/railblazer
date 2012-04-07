@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+# Detects the database adapter used in a Rails application from a Gemfile.
+# If more than one adapter is found, an exception will be raised, since the 
+# ultimate purpose of this script is to help generate a database.yml. Our 
+# assumption is that something weird is going on if there is more than one 
+# adapter gem listed in the Gemfile, so we throw up our hands.
+
+# *Note that this evaluates the Gemfile as a ruby script, so it's possible
+# for someone to do something nasty in this file*
+
+require "#{File.dirname(__FILE__)}/../lib/railblazer"
+
+if ARGV.empty?
+  puts "Usage is app_adapter GEMFILE_PATH"
+  exit 1
+end
+
+gemfile = Railblazer::MinimalGemfile.new(File.new(ARGV[0]))
+print Railblazer::AdapterDetection.new(gemfile).run
