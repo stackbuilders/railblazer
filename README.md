@@ -1,4 +1,4 @@
-# Railblazer: Quick local and CI Rails app configuration
+# Railblazer: Quick Rails app configuration
 
 [![Build Status](https://secure.travis-ci.org/stackbuilders/railblazer.png)](http://travis-ci.org/stackbuilders/railblazer)
 
