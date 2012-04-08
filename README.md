@@ -5,7 +5,7 @@
 Railblazer helps you to spend less time setting up Rails apps by providing three scripts:
 
 1. `app_adapter`: given a Gemfile, detects whether the application runs on mysql, mysql2, or postgres
-2. `build`: build script that can be used by Jenkins
+2. `blaze`: build script that can be used by Jenkins
 3. `db_config`: outputs a database.yml when given an adapter and app name.
 
 In other words, Railblazer tries to take the work out of setting up things like builds on CI servers, assuming you're using RVM and bundler in your applications.
@@ -27,9 +27,9 @@ app_adapter ~/Code/project/Gemfile
 This will return a string like `mysql2` without a trailing newline (for easier inclusion in other scripts). The program will raise an error if exactly one adapter is not found. It currently only 
 works with applications that use the mysql, mysql2, or postgres (pg) adapters.
 
-# build
+# blaze
 
-`build` is a shell script that can be used by Jenkins. It assumes that for your build you don't want to run migrations, and that instead we should just drop the test db, re-create it, and load the schema.rb file.
+`blaze` is a shell script that can be used by Jenkins. It assumes that for your build you don't want to run migrations, and that instead we should just drop the test db, re-create it, and load the schema.rb file.
 
 It also does the following, which we find useful in our CI builds:
 
@@ -44,7 +44,7 @@ invoked from Jenkins.
 Example usage:
 
 ```
-build
+blaze
 ```
 
 # db_config
