@@ -1,6 +1,6 @@
 # Railblazer - spend less time setting up apps locally and on CI servers
 
-[![Build Status](https://secure.travis-ci.org/[stackbuilders]/[railblazer].png)](http://travis-ci.org/[stackbuilders]/[railblazer])
+[![Build Status](https://secure.travis-ci.org/stackbuilders/railblazer.png)](http://travis-ci.org/stackbuilders/railblazer)
 
 Railblazer helps you to spend less time setting up Rails apps by providing three scripts:
 
