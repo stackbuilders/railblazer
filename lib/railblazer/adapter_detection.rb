@@ -1,3 +1,5 @@
+require 'set'
+
 module Railblazer
   class AdapterDetection
     ADAPTERS = {
