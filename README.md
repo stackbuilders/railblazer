@@ -1,4 +1,4 @@
-# Railblazer - spend less time setting up apps locally and on CI servers
+# Railblazer: Quick local and CI Rails app configuration
 
 [![Build Status](https://secure.travis-ci.org/stackbuilders/railblazer.png)](http://travis-ci.org/stackbuilders/railblazer)
 
