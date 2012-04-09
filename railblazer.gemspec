@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
     Includes
   EOS
 
-  gem.homepage      = "http://github.com/stackbuilders"
+  gem.homepage      = "http://github.com/stackbuilders/railblazer"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
