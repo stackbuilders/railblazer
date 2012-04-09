@@ -4,11 +4,8 @@ require File.expand_path('../lib/railblazer/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Justin S. Leitgeb"]
   gem.email         = ["justin@stackbuilders.com"]
-  gem.summary       = %q{Tools to automate builds for Stack Builders CI server}
-  gem.description   = <<-EOS
-    Contains tools to automate the build for the Stack Builders CI server.
-    Includes
-  EOS
+  gem.summary       = %q{Quick Rails app configuration}
+  gem.description   = %q{Automatically configures Rails database connection for development and CI server}
 
   gem.homepage      = "http://github.com/stackbuilders/railblazer"
 
