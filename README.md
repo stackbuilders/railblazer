@@ -10,6 +10,11 @@ Railblazer helps you to spend less time setting up Rails apps by providing three
 
 In other words, Railblazer tries to take the work out of setting up things like builds on CI servers, assuming you're using RVM and bundler in your applications.
 
+# Compatibility
+
+Should run on Ruby 1.9.2 or greater. The tests require MiniTest, so they'll only run without
+configuration on Ruby 1.9.3 (which includes MiniTest in stdlib).
+
 # Installation
 
 You can install railblazer via the gem, but since gems that you install are limited to a particular gemset or Ruby version (assuming you're running rvm), you can just clone this repository. In order to 
