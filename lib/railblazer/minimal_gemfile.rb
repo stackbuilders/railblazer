@@ -17,6 +17,10 @@ module Railblazer
       yield
     end
 
+    def respond_to_missing? method, *args
+      true
+    end
+
     def method_missing name, *args ; end
   end
 end

@@ -36,6 +36,10 @@ describe Railblazer::MinimalGemfile do
 
       Railblazer::MinimalGemfile.new(StringIO.new(mysql_gemfile)).gems.must_equal %w[mysql othergem].to_set
     end
+
+    it "should respond_to methods that aren't defined" do
+      assert_respond_to Railblazer::MinimalGemfile.new(StringIO.new('')), :foobar
+    end
   end
 end
 
