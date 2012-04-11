@@ -2,17 +2,18 @@
 
 [![Build Status](https://secure.travis-ci.org/stackbuilders/railblazer.png)](http://travis-ci.org/stackbuilders/railblazer)
 
-Railblazer helps you to spend less time setting up Rails apps by providing three scripts:
+Railblazer helps you to spend less time setting up Rails apps by providing four scripts:
 
 1. `app_adapter`: given a Gemfile, detects whether the application runs on mysql, mysql2, or postgres
-2. `blaze`: build script that can be used by Jenkins
-3. `db_config`: outputs a database.yml when given an adapter and app name.
+2. `auto_configure`: outputs a database.yml when given an adapter and app name.
+3. `blaze`: build script that can be used by Jenkins
+
 
 In other words, Railblazer tries to take the work out of setting up things like builds on CI servers, assuming you're using RVM and bundler in your applications.
 
 # Compatibility
 
-Railblazer only runs on Ruby 1.9.3 or newer Ruby versions.
+Railblazer only runs on Ruby 1.9.3 or newer Ruby versions. It can, however, be used to configure Rails apps using previous ruby versions.
 
 # Installation
 
@@ -30,6 +31,16 @@ app_adapter ~/Code/project/Gemfile
 
 This will return a string like `mysql2` without a trailing newline (for easier inclusion in other scripts). The program will raise an error if exactly one adapter is not found. It currently only 
 works with applications that use the mysql, mysql2, or postgres (pg) adapters.
+
+# auto_configure
+
+`auto_configure` automatically generates a database.yml, sunspot.yml and redis configuration. This is generated from a template for mysql, mysql2, and postgres included with this gem.  If you want, you can also override the default templates by including templates in a directory named `~/.blaze/templates`.
+
+Example usage:
+
+```
+auto_configure RAILS_ROOT APP_OR_BUILD_NAME
+```
 
 # blaze
 
@@ -49,16 +60,6 @@ Example usage:
 
 ```
 blaze
-```
-
-# auto_configure
-
-`auto_configure` automatically generates a database.yml, sunspot.yml and redis configuration. This is generated from a template for mysql, mysql2, and postgres included with this gem.  If you want, you can also override the default templates by including templates in a directory named `~/.blaze/templates`.
-
-Example usage:
-
-```
-auto_configure RAILS_ROOT APP_OR_BUILD_NAME
 ```
 
 # Concurrency
