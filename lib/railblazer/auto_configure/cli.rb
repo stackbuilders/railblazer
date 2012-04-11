@@ -44,6 +44,7 @@ module Railblazer
       def start
         write_sunspot_configuration!
         write_database_configuration!
+        write_resque_configuration!
       end
 
 
@@ -60,6 +61,14 @@ module Railblazer
       def write_sunspot_configuration!
         if gemfile.gems.include?('sunspot_rails')
           output('config/sunspot.yml', Railblazer::Template.new('sunspot').interpolate({ port: random_solr_port }))
+        end
+      end
+
+      def write_resque_configuration!
+        if gemfile.gems.include?('resque')
+          redis_config = "Resque.redis = $redis = Redis.new({ db: #{rand(0..15)} })\n"
+          # Overwrite existing resque configuration by alphabetical order
+          output('config/initializers/z_ci_resque.rb', redis_config)
         end
       end
 

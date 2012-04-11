@@ -12,8 +12,7 @@ In other words, Railblazer tries to take the work out of setting up things like 
 
 # Compatibility
 
-Should run on Ruby 1.9.2 or greater. The tests require MiniTest, so they'll only run without
-configuration on Ruby 1.9.3 (which includes MiniTest in stdlib).
+Railblazer only runs on Ruby 1.9.3 or newer Ruby versions.
 
 # Installation
 
