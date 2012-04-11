@@ -1,0 +1,2 @@
+gem 'rake'
+gem 'mocha', '~> 0.10.5'
