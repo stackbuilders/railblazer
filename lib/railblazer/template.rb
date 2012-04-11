@@ -2,7 +2,7 @@ require 'erb'
 require 'etc'
 
 module Railblazer
-  class ConfigGenerator
+  class Template
 
     HOME_TEMPLATE_PATH = "#{Etc.getpwuid.dir}/.blaze/templates"
 

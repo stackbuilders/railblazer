@@ -13,5 +13,5 @@ end
 
 raise ArgumentError, "App name must be specified as second parameter" if ARGV[1].nil?
 
-puts Railblazer::ConfigGenerator.new(ARGV[0]).interpolate({app_name: ARGV[1]})
+puts Railblazer::Template.new(ARGV[0]).interpolate({app_name: ARGV[1]})
 

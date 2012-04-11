@@ -13,4 +13,3 @@ db_config `app_adapter ${WORKSPACE}/Gemfile` ${JOB_NAME} > ${WORKSPACE}/config/d
     bundle --without production && \
     bundle exec rake db:drop db:create db:schema:load && \
     xvfb-run -a rspec spec
-    
