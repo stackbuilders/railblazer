@@ -53,13 +53,24 @@ blaze
 
 # auto_configure
 
-`auto_configure` automatically generates a database.yml and sunspot.yml. This is generated from a template for mysql, mysql2, and postgres included with this gem.  If you want, you can also override the default templates by including templates in a directory named `~/.blaze/templates`.
+`auto_configure` automatically generates a database.yml, sunspot.yml and redis configuration. This is generated from a template for mysql, mysql2, and postgres included with this gem.  If you want, you can also override the default templates by including templates in a directory named `~/.blaze/templates`.
 
 Example usage:
 
 ```
 auto_configure RAILS_ROOT APP_OR_BUILD_NAME
 ```
+
+# Concurrency
+
+Railblazer is designed to help you run multiple builds in parallel for different projects. This means that it has to
+namespace the data stores your application may use. It namespaces things in the following way:
+
+1. Databases - databases are namespaced according to the application name given to the auto-configuration scripts
+2. SOLR - If your application uses sunspot_rails, Railblazer generates a sunspot.yml that chooses a random port in the 8900 range
+3. Redis - If your application uses resque, we randomly choose a database number from 0 - 63, initialize a redis connection and whack this into your rails app with a sledgehammer (overwriting any connections you may initialize with Resque.redis or $redis). You will probably need to set your redis.conf databases to 64, instead of the default 16 for this to work.
+
+Suggestions are always welcome about how to make Rails applications automatically play nicer in the same sandbox.
 
 # Summary
 
