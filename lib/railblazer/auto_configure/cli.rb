@@ -66,7 +66,7 @@ module Railblazer
 
       def write_resque_configuration!
         if gemfile.gems.include?('resque')
-          redis_config = "Resque.redis = $redis = Redis.new({ db: #{rand(0..15)} })\n"
+          redis_config = "Resque.redis = $redis = Redis.new({ db: #{rand(0..63)} })\n"
           # Overwrite existing resque configuration by alphabetical order
           output('config/initializers/z_ci_resque.rb', redis_config)
         end
