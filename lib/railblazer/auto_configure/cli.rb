@@ -15,7 +15,7 @@ module Railblazer
         raise ArgumentError, "App name must be specified as second parameter" if ARGV[1].nil?
 
         options = parse_options
-        gemfile = Railblazer::MinimalGemfile.new(File.new(File.join(rails_root, 'Gemfile')))
+        gemfile = Railblazer::MinimalGemfile.new(File.new(File.join(ARGV[0], 'Gemfile')))
         new(ARGV[0], ARGV[1], gemfile, options).start
       end
 
