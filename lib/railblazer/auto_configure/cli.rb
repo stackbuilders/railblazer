@@ -89,7 +89,7 @@ module Railblazer
       end
 
       def output_to_file(path_in_app, contents)
-        File.open(File.join(rails_root, path_in_app, 'w')) {|file| file.write(sunspot_config)}
+        File.open(File.join(rails_root, path_in_app), 'w') {|file| file.write(contents)}
       end
     end
   end
