@@ -6,21 +6,19 @@ module Railblazer
 
     HOME_TEMPLATE_PATH = "#{Etc.getpwuid.dir}/.blaze/templates"
 
-    attr_reader :db_adapter, :app_name
-    def initialize db_adapter, app_name
-      @db_adapter = db_adapter
-      @app_name   = app_name
+    def initialize template_name
+      @template = ERB.new(template_for(template_name))
     end
 
-    def to_s
-      ERB.new(template).result(binding)
+    def interpolate replacements = { }
+      @template.result(replacements.to_binding)
     end
 
     private
-    def template
-      selected_template = File.join(template_path, "#{db_adapter}.yml.erb")
-      raise "Template file not found for #{db_adapter}" unless File.exist?(selected_template)
-      template = File.read(selected_template)
+    def template_for template_name
+      selected_template = File.join(template_path, "#{template_name}.yml.erb")
+      raise "Template not found for #{template_name}" unless File.exist?(selected_template)
+      File.read(selected_template)
     end
 
     def template_path

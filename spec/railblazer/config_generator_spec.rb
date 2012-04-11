@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Railblazer::ConfigGenerator do
-  describe "#to_s" do
+  describe "#interpolate" do
     it "should generate a valid configuration for mysql2" do
       desired = <<EOS
 test:
@@ -10,7 +10,7 @@ test:
   username: root
   host: 127.0.0.1
 EOS
-      Railblazer::ConfigGenerator.new('mysql2', 'fooapp').to_s.must_equal desired
+      Railblazer::ConfigGenerator.new('mysql2').interpolate({app_name: 'fooapp'}).must_equal desired
     end
   end
 end
