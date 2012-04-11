@@ -52,14 +52,14 @@ Example usage:
 blaze
 ```
 
-# db_config
+# auto_configure
 
-`db_config` automatically generates a database.yml file when given an adapter and application name. This is generated from a template for mysql, mysql2, and postgres included with this gem.  If you want, you can also override the default templates by including templates in a directory named `~/.blaze/templates`.
+`auto_configure` automatically generates a database.yml and sunspot.yml. This is generated from a template for mysql, mysql2, and postgres included with this gem.  If you want, you can also override the default templates by including templates in a directory named `~/.blaze/templates`.
 
 Example usage:
 
 ```
-db_config mysql2 myapp
+auto_configure RAILS_ROOT APP_OR_BUILD_NAME
 ```
 
 # Summary
