@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+# Generates required configuration files based on templates
+# and Rails app configuration.
+
+require "#{File.dirname(__FILE__)}/../lib/railblazer"
+
+Railblazer::AutoConfigure::CLI.start
