@@ -8,6 +8,19 @@ then
 	exit 1
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+if [ -z "${WORKSPACE}" ]
+then
+    echo "WORKSPACE must be set"
+    exit 1
+fi
 
-cd ${WORKSPACE} && cap $1 deploy:migrations
+if [ -z "${GIT_COMMIT}" ]
+then
+    echo "GIT_COMMIT must be set"
+    exit 1
+fi
+
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+
+cd ${WORKSPACE} && \
+    cap -S branch=${GIT_COMMIT} $1 deploy:migrations

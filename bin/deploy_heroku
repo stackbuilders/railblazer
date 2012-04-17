@@ -8,10 +8,11 @@ then
 	exit 1
 fi
 
-if [ -z "${WORKSPACE}" ]
+
+if [ -z "${GIT_COMMIT}" ]
 then
-	echo "WORKSPACE must be set"
-	exit 1
+    echo "GIT_COMMIT must be set"
+    exit 1
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

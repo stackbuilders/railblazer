@@ -6,6 +6,18 @@ PATH=$PATH:$HOME/.rvm/bin:/usr/bin:`dirname $0`
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+if [ -z "${GIT_COMMIT}" ]
+then
+    echo "GIT_COMMIT must be set"
+    exit 1
+fi
+
+if [ -z "${GIT_COMMIT}" ]
+then
+    echo "GIT_COMMIT must be set"
+    exit 1
+fi
+
 export RAILS_ENV=test
 
 auto_configure ${WORKSPACE} ${JOB_NAME} && \

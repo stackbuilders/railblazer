@@ -2,12 +2,13 @@
 
 [![Build Status](https://secure.travis-ci.org/stackbuilders/railblazer.png)](http://travis-ci.org/stackbuilders/railblazer)
 
-Railblazer helps you to spend less time setting up Rails apps by providing four scripts:
+Railblazer helps you to spend less time setting up Rails apps, particularly on CI servers, by providing five scripts:
 
-1. `app_adapter`: given a Gemfile, detects whether the application runs on mysql, mysql2, or postgres
-2. `auto_configure`: outputs a database.yml when given an adapter and app name.
+1. `app_adapter`: given a Gemfile, determines whether the application runs on mysql, mysql2, or postgres
+2. `auto_configure`: outputs a database.yml based on a template when given an adapter and app name.
 3. `blaze`: build script that can be used by Jenkins
-
+4. `deploy`: deploys an application with migrations using capistrano
+5. `deploy_heroku`: deploys an application to heroku, runs migrations, and restarts the app
 
 In other words, Railblazer tries to take the work out of setting up things like builds on CI servers, assuming you're using RVM and bundler in your applications.
 
@@ -17,8 +18,8 @@ Railblazer only runs on Ruby 1.9.3 or newer Ruby versions. It can, however, be u
 
 # Installation
 
-You can install railblazer via the gem, but since gems that you install are limited to a particular gemset or Ruby version (assuming you're running rvm), you can just clone this repository. In order to 
-run the scripts in this package, just add the `bin` directory in this repository to your path. 
+You can install railblazer via the gem, but since gems that you install are limited to a particular gemset or Ruby version (assuming you're running rvm), you can just clone this repository. In order to
+run the scripts in this package, just add the `bin` directory in this repository to your path.
 
 # app_adapter
 
@@ -29,7 +30,7 @@ as an argument:
 app_adapter ~/Code/project/Gemfile
 ```
 
-This will return a string like `mysql2` without a trailing newline (for easier inclusion in other scripts). The program will raise an error if exactly one adapter is not found. It currently only 
+This will return a string like `mysql2` without a trailing newline (for easier inclusion in other scripts). The program will raise an error if exactly one adapter is not found. It currently only
 works with applications that use the mysql, mysql2, or postgres (pg) adapters.
 
 # auto_configure
@@ -62,6 +63,28 @@ Example usage:
 blaze
 ```
 
+# deploy
+
+Loads rvm, and deploys application with migrations using capistrano. Usage:
+
+```
+deploy DEPLOY_ENVIRONMENT
+```
+
+This script depends on the variables $GIT_COMMIT and $WORKSPACE being set in the environment
+prior to invocation.
+
+# deploy_heroku
+
+Pushes an application to Heroku, runs migrations, and restarts the app. Usage:
+
+```
+deploy_heroku APP_NAME
+```
+
+This script depends on the variables $GIT_COMMIT and $WORKSPACE being set in the environment
+prior to invocation.
+
 # Concurrency
 
 Railblazer is designed to help you run multiple builds in parallel for different projects. This means that it has to
@@ -75,12 +98,12 @@ Suggestions are always welcome about how to make Rails applications automaticall
 
 # Summary
 
-Railblazer helps with configuration of database connections in Rails apps, and provides scripts which can help with configuraiton of Rails apps for CI server builds. 
+Railblazer helps with configuration of database connections in Rails apps, and provides scripts which can help with configuraiton of Rails apps for CI server builds.
 
-Instead of relying on the database.sample.yml files included in many Rails apps, I find that it's often easier to just copy a working database.yml from another project on my computer. These settings reflect things like the correct host and username / password configuration for my local workstation. I think that we can move towards slightly less configuration work for new Rails apps on workstations that are already in use by developers by building up frameworks that: 
+Instead of relying on the database.sample.yml files included in many Rails apps, I find that it's often easier to just copy a working database.yml from another project on my computer. These settings reflect things like the correct host and username / password configuration for my local workstation. I think that we can move towards slightly less configuration work for new Rails apps on workstations that are already in use by developers by building up frameworks that:
 
-1. use local templates for database configuration and 
-2. auto-detect the database adapter from the Rails application configuration. 
+1. use local templates for database configuration and
+2. auto-detect the database adapter from the Rails application configuration.
 
 Railblazer provides a first pass at automating this type of configuration, and provides a script showing how this is useful in the context of auto-configuring apps for Jenkins CI server.
 
