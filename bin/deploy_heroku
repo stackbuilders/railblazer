@@ -14,13 +14,7 @@ then
 	exit 1
 fi
 
-if [ -z "${APP_NAME}" ]
-then
-	echo "APP_NAME must be set"
-	exit 1
-fi
-
 cd ${WORKSPACE} && \
-	git push git@heroku.com:${APP_NAME}.git ${GIT_COMMIT}:master && \
-	bundle exec heroku run rake db:migrate --app ${APP_NAME} && \
-	bundle exec heroku restart --app ${APP_NAME}
+	git push git@heroku.com:$1.git ${GIT_COMMIT}:master && \
+	bundle exec heroku run rake db:migrate --app $1 && \
+	bundle exec heroku restart --app $1
