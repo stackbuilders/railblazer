@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Deploys an app to Heroku
+
+if [ $# -ne 1 ]
+then
+	echo "USAGE: $0 APP_NAME"
+	exit 1
+fi
+
+if [ -z "${WORKSPACE}" ]
+then
+	echo "WORKSPACE must be set"
+	exit 1
+fi
+
+if [ -z "${APP_NAME}" ]
+then
+	echo "APP_NAME must be set"
+	exit 1
+fi
+
+cd ${WORKSPACE} && \
+	git push git@heroku.com:${APP_NAME}.git ${GIT_COMMIT}:master && \
+	bundle exec heroku run rake db:migrate --app ${APP_NAME} && \
+	bundle exec heroku restart --app ${APP_NAME}

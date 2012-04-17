@@ -4,7 +4,7 @@
 
 if [ $# -ne 1 ]
 then
-	echo "USAGE: scriptname DEPLOY_ENVIRONMENT"
+	echo "USAGE: $0 DEPLOY_ENVIRONMENT"
 	exit 1
 fi
 
