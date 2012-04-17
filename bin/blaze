@@ -6,15 +6,15 @@ PATH=$PATH:$HOME/.rvm/bin:/usr/bin:`dirname $0`
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-if [ -z "${GIT_COMMIT}" ]
+if [ -z "${WORKSPACE}" ]
 then
-    echo "GIT_COMMIT must be set"
+    echo "WORKSPACE must be set"
     exit 1
 fi
 
-if [ -z "${GIT_COMMIT}" ]
+if [ -z "${JOB_NAME}" ]
 then
-    echo "GIT_COMMIT must be set"
+    echo "JOB_NAME must be set"
     exit 1
 fi
 
