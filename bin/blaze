@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # A script for running a build for CI using RVM.
 
