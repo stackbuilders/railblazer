@@ -4,24 +4,24 @@
 
 PATH=$PATH:$HOME/.rvm/bin:/usr/bin:`dirname $0`
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 if [ -z "${WORKSPACE}" ]
 then
-    echo "WORKSPACE must be set"
-    exit 1
+  echo "WORKSPACE must be set"
+  exit 1
 fi
 
 if [ -z "${JOB_NAME}" ]
 then
-    echo "JOB_NAME must be set"
-    exit 1
+  echo "JOB_NAME must be set"
+  exit 1
 fi
 
 export RAILS_ENV=test
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 auto_configure ${WORKSPACE} ${JOB_NAME} && \
-    cd ${WORKSPACE} && \
-    bundle --without production && \
-    bundle exec rake db:drop db:create db:schema:load && \
-    xvfb-run -a bundle exec rspec --format progress --no-color --profile spec
+  cd ${WORKSPACE} && \
+  bundle --without production && \
+  bundle exec rake db:drop db:create db:schema:load && \
+  xvfb-run -a bundle exec rspec --format progress --no-color --profile spec

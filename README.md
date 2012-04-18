@@ -7,8 +7,8 @@ Railblazer helps you to spend less time setting up Rails apps, particularly on C
 1. `app_adapter`: given a Gemfile, determines whether the application runs on mysql, mysql2, or postgres
 2. `auto_configure`: outputs a database.yml based on a template when given an adapter and app name.
 3. `blaze`: build script that can be used by Jenkins
-4. `deploy`: deploys an application with migrations using capistrano
-5. `deploy_heroku`: deploys an application to heroku, runs migrations, and restarts the app
+4. `cap_deploy`: deploys an application with migrations using capistrano
+5. `heroku_deploy`: deploys an application to heroku, runs migrations, and restarts the app
 
 In other words, Railblazer tries to take the work out of setting up things like builds on CI servers, assuming you're using RVM and bundler in your applications.
 
@@ -63,12 +63,12 @@ Example usage:
 blaze
 ```
 
-# deploy
+# cap_deploy
 
 Loads rvm, and deploys application with migrations using capistrano. Usage:
 
 ```
-deploy DEPLOY_ENVIRONMENT
+cap_deploy DEPLOY_ENVIRONMENT
 ```
 
 This script depends on the variables $GIT_COMMIT and $WORKSPACE being set in the environment
@@ -79,7 +79,7 @@ prior to invocation.
 Pushes an application to Heroku, runs migrations, and restarts the app. Usage:
 
 ```
-deploy_heroku APP_NAME
+heroku_deploy APP_NAME
 ```
 
 This script depends on the variables $GIT_COMMIT and $WORKSPACE being set in the environment

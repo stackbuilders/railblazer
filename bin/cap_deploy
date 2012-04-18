@@ -4,23 +4,23 @@
 
 if [ $# -ne 1 ]
 then
-	echo "USAGE: $0 DEPLOY_ENVIRONMENT"
-	exit 1
+  echo "USAGE: $0 DEPLOY_ENVIRONMENT"
+  exit 1
 fi
 
 if [ -z "${WORKSPACE}" ]
 then
-    echo "WORKSPACE must be set"
-    exit 1
+  echo "WORKSPACE must be set"
+  exit 1
 fi
 
 if [ -z "${GIT_COMMIT}" ]
 then
-    echo "GIT_COMMIT must be set"
-    exit 1
+  echo "GIT_COMMIT must be set"
+  exit 1
 fi
 
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
 
 cd ${WORKSPACE} && \
-    cap -S branch=${GIT_COMMIT} $1 deploy:migrations
+  cap -S branch=${GIT_COMMIT} $1 deploy:migrations
