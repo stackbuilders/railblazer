@@ -2,7 +2,7 @@
 
 # A script for running a build for CI using RVM.
 
-PATH=$PATH:$HOME/.rvm/bin:/usr/bin:`dirname $0`
+PATH=$PATH:${HOME}/.rvm/bin:/usr/bin:`dirname $0`
 
 if [ -z "${WORKSPACE}" ]
 then
@@ -18,7 +18,7 @@ fi
 
 export RAILS_ENV=test
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
 
 auto_configure ${WORKSPACE} ${JOB_NAME} && \
   cd ${WORKSPACE} && \
