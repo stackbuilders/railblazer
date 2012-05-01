@@ -9,6 +9,7 @@ Railblazer helps you to spend less time setting up Rails apps, particularly on C
 3. `blaze`: build script that can be used by Jenkins
 4. `cap_deploy`: deploys an application with migrations using capistrano
 5. `heroku_deploy`: deploys an application to heroku, runs migrations, and restarts the app
+6. `runner`: script to run anything as the RVM Ruby
 
 In other words, Railblazer tries to take the work out of setting up things like builds on CI servers, assuming you're using RVM and bundler in your applications.
 
@@ -82,6 +83,13 @@ Pushes an application to Heroku, runs migrations, and restarts the app. Usage:
 heroku_deploy APP_NAME
 ```
 
+# runner
+
+Runs the given argument as if it was run from the command line after loading RVM. Usage:
+
+```
+runner "rake db:migrate"
+```
 This script depends on the variables $GIT_COMMIT and $WORKSPACE being set in the environment
 prior to invocation.
 
