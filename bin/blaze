@@ -16,6 +16,11 @@ then
   exit 1
 fi
 
+if [ -z "${SPEC_FILES}" ]
+then
+  $SPEC_FILES=spec
+fi
+
 export RAILS_ENV=test
 
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
@@ -24,4 +29,4 @@ auto_configure ${WORKSPACE} ${JOB_NAME} && \
   cd ${WORKSPACE} && \
   bundle --without production && \
   bundle exec rake db:drop db:create db:schema:load && \
-  xvfb-run -a bundle exec rspec --format doc --no-color --profile spec
+  xvfb-run -a bundle exec rspec --format doc --no-color --profile ${SPEC_FILES}
