@@ -2,10 +2,13 @@ require 'set'
 
 module Railblazer
   class AdapterDetection
+    # The name on the left is the gem, the name on the right is the
+    # adapter name that should appear in the database.yml.
     ADAPTERS = {
-      'mysql'  => 'mysql',
-      'mysql2' => 'mysql2',
-      'pg'     => 'postgresql'
+      'mysql'                               => 'mysql',
+      'mysql2'                              => 'mysql2',
+      'pg'                                  => 'postgresql',
+      'activerecord-jdbcpostgresql-adapter' => 'postgresql'
     }.freeze
 
     attr_reader :gems
