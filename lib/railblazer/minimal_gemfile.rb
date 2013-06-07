@@ -10,7 +10,7 @@ module Railblazer
     end
 
     def gem name, *args
-      @gems << name
+      @gems << name if Gem.new(name, args).for_current_platform?
     end
 
     def group *args, &block
