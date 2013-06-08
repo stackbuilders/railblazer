@@ -26,7 +26,7 @@ describe Railblazer::MinimalGemfile do
     end
 
     it "should detect for the current platform" do
-      mysql_gemfile = <<-EOF
+      pg_gemfile = <<-EOF
         gem 'mysql', platform: :mri
         gem 'pg', platform: :jruby
         group 'development' do
@@ -34,8 +34,8 @@ describe Railblazer::MinimalGemfile do
         end
       EOF
 
-      Railblazer::Gem.any_instance.stubs(:ruby_platform).returns("java")
-      Railblazer::MinimalGemfile.new(StringIO.new(mysql_gemfile)).gems.must_equal %w[pg othergem].to_set
+      Railblazer::Gem.any_instance.stubs(:current_ruby_platform).returns("java")
+      Railblazer::MinimalGemfile.new(StringIO.new(pg_gemfile)).gems.must_equal %w[pg othergem].to_set
     end
 
     it "should ignore other methods in the Gemfile" do

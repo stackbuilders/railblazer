@@ -10,7 +10,7 @@ module Railblazer
     end
 
     def gem name, *args
-      @gems << name if Gem.new(name, args).for_current_platform?
+      @gems << name if gem_for_current_platform?(args)
     end
 
     def group *args, &block
@@ -22,5 +22,11 @@ module Railblazer
     end
 
     def method_missing name, *args ; end
+
+    private
+
+    def gem_for_current_platform?(options)
+      Gem.new(options).for_current_platform?
+    end
   end
 end
