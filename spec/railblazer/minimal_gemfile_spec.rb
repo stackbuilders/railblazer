@@ -16,21 +16,35 @@ describe Railblazer::MinimalGemfile do
     it "should detect gems inside of group blocks" do
       mysql_gemfile = <<-EOF
         gem 'mysql'
+        gem 'pg', platform: :jruby
         group 'development' do
-          gem 'othergem'  
+          gem 'othergem'
         end
       EOF
 
       Railblazer::MinimalGemfile.new(StringIO.new(mysql_gemfile)).gems.must_equal %w[mysql othergem].to_set
     end
 
+    it "should detect for the current platform" do
+      mysql_gemfile = <<-EOF
+        gem 'mysql', platform: :mri
+        gem 'pg', platform: :jruby
+        group 'development' do
+          gem 'othergem'
+        end
+      EOF
+
+      Railblazer::Gem.any_instance.stubs(:ruby_platform).returns("java")
+      Railblazer::MinimalGemfile.new(StringIO.new(mysql_gemfile)).gems.must_equal %w[pg othergem].to_set
+    end
+
     it "should ignore other methods in the Gemfile" do
       mysql_gemfile = <<-EOF
         gem 'mysql'
         funky_method
-      
+
         group 'development' do
-          gem 'othergem'  
+          gem 'othergem'
         end
       EOF
 
