@@ -20,7 +20,7 @@ module Railblazer
 
     def gem_platforms
       if args.is_a? Hash
-        Array(args[:platform])
+        Array(args[:platforms])
       else
         []
       end

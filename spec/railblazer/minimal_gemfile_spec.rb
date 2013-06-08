@@ -16,7 +16,7 @@ describe Railblazer::MinimalGemfile do
     it "should detect gems inside of group blocks" do
       mysql_gemfile = <<-EOF
         gem 'mysql'
-        gem 'pg', platform: :jruby
+        gem 'pg', platforms: :jruby
         group 'development' do
           gem 'othergem'
         end
@@ -27,8 +27,8 @@ describe Railblazer::MinimalGemfile do
 
     it "should detect for the current platform" do
       pg_gemfile = <<-EOF
-        gem 'mysql', platform: :mri
-        gem 'pg', platform: :jruby
+        gem 'mysql', platforms: :mri
+        gem 'pg', platforms: :jruby
         group 'development' do
           gem 'othergem'
         end
