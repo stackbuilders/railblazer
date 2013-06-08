@@ -3,25 +3,25 @@ require 'spec_helper'
 describe Railblazer::Gem do
   describe "#for_current_platform?" do
     it "returns true if ruby platform is Java and gem platform is jruby" do
-      gem = Railblazer::Gem.new([{platform: :jruby}])
+      gem = Railblazer::Gem.new([{platforms: :jruby}])
       gem.stubs(:current_ruby_platform).returns("java")
       gem.for_current_platform?.must_equal true
     end
 
     it "returns false if ruby platform is Java and gem platform is mri" do
-      gem = Railblazer::Gem.new([{platform: :mri}])
+      gem = Railblazer::Gem.new([{platforms: :mri}])
       gem.stubs(:current_ruby_platform).returns("java")
       gem.for_current_platform?.must_equal false
     end
 
     it "returns true if ruby platform is not Java and gem platform is mri" do
-      gem = Railblazer::Gem.new([{platform: :mri}])
+      gem = Railblazer::Gem.new([{platforms: :mri}])
       gem.stubs(:current_ruby_platform).returns("something_entirely_different")
       gem.for_current_platform?.must_equal true
     end
 
     it "returns false if ruby platform is not Java and gem platform is jruby" do
-      gem = Railblazer::Gem.new([{platform: :jruby}])
+      gem = Railblazer::Gem.new([{platforms: :jruby}])
       gem.stubs(:current_ruby_platform).returns("something_entirely_different")
       gem.for_current_platform?.must_equal false
     end
@@ -33,7 +33,7 @@ describe Railblazer::Gem do
     end
 
     it "works when platform is an array" do
-      gem = Railblazer::Gem.new([{platform: [:jruby]}])
+      gem = Railblazer::Gem.new([{platforms: [:jruby]}])
       gem.stubs(:current_ruby_platform).returns("java")
       gem.for_current_platform?.must_equal true
     end
