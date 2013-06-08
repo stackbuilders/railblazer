@@ -51,6 +51,15 @@ describe Railblazer::MinimalGemfile do
       Railblazer::MinimalGemfile.new(StringIO.new(mysql_gemfile)).gems.must_equal %w[mysql othergem].to_set
     end
 
+    it "should work with gems with other options" do
+      versioned_gemfile = <<-EOF
+        gem 'shoulda-matchers', '~> 1.3.0'
+        gem 'plastic', git: 'git://github.com/square/plastic.git', ref: '75b701c3b90b7057c7b3daf89e01cec5b0e7dde'
+      EOF
+
+      Railblazer::MinimalGemfile.new(StringIO.new(versioned_gemfile)).gems.must_equal %w[shoulda-matchers plastic].to_set
+    end
+
     it "should respond_to methods that aren't defined" do
       assert_respond_to Railblazer::MinimalGemfile.new(StringIO.new('')), :foobar
     end

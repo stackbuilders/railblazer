@@ -1,7 +1,7 @@
 module Railblazer
   class Gem
     def initialize(args)
-      @args = args.last || {}
+      @args = args.last
     end
 
     def for_current_platform?
@@ -19,7 +19,11 @@ module Railblazer
     end
 
     def gem_platforms
-      Array(args[:platform])
+      if args.is_a? Hash
+        Array(args[:platform])
+      else
+        []
+      end
     end
 
     def current_ruby_platform

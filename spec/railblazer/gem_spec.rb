@@ -37,5 +37,11 @@ describe Railblazer::Gem do
       gem.stubs(:current_ruby_platform).returns("java")
       gem.for_current_platform?.must_equal true
     end
+
+    it "works when the initialization array last element is not a hash" do
+      gem = Railblazer::Gem.new(["~> 1.3.0"])
+      gem.stubs(:current_ruby_platform).returns("java")
+      gem.for_current_platform?.must_equal true
+    end
   end
 end
