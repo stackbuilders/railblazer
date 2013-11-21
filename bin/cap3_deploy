@@ -1,0 +1,26 @@
+#!/bin/bash -x
+
+# Deploy a build
+
+if [ $# -ne 1 ]
+then
+  echo "USAGE: $0 DEPLOY_ENVIRONMENT"
+  exit 1
+fi
+
+if [ -z "${WORKSPACE}" ]
+then
+  echo "WORKSPACE must be set"
+  exit 1
+fi
+
+if [ -z "${GIT_COMMIT}" ]
+then
+  echo "GIT_COMMIT must be set"
+  exit 1
+fi
+
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+
+cd ${WORKSPACE} && \
+  cap -s revision=${GIT_COMMIT} $1 deploy
