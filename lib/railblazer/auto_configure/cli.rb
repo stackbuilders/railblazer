@@ -23,7 +23,7 @@ module Railblazer
         options = {:dry_run => false}
         OptionParser.new do |opts|
           opts.banner = BANNER
-          
+
           opts.on("-d", "--[no-]dry-run", "Output to screen instead of configuration files") do |d|
             options[:dry_run] = d
           end
@@ -51,7 +51,7 @@ module Railblazer
       private
 
       def write_database_configuration!
-        output('config/database.yml', Railblazer::Template.new(db_adapter).interpolate({app_name: app_name})) 
+        output('config/database.yml', Railblazer::Template.new(db_adapter).interpolate({app_name: app_name}))
       end
 
       def db_adapter

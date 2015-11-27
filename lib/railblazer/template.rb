@@ -22,7 +22,7 @@ module Railblazer
     end
 
     def template_path
-      File.directory?(HOME_TEMPLATE_PATH) ? 
+      File.directory?(HOME_TEMPLATE_PATH) ?
         HOME_TEMPLATE_PATH :
         File.join(File.dirname(__FILE__), '../../templates')
     end
